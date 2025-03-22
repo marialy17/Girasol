@@ -61,17 +61,25 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .modalContent {
     background: white;
     padding: 2.5rem;
     border-radius: 15px;
-    max-width: 500px;
-    width: 90%;
+    max-width: 90%; /* Permite que el modal se ajuste al ancho de la pantalla */
+    max-height: 90%; /* Permite que el modal no se salga de la pantalla */
+    width: auto;
+    height: auto;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.5s ease-out;
+    overflow-y: auto; /* Permite desplazarse si el contenido es largo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Animación de entrada */
@@ -188,3 +196,18 @@
     border-radius: 15px; /* Bordes redondeados */
   }
   
+  /* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .modalContent {
+        padding: 1.5rem;
+        max-width: 95%; /* Aumenta el ancho en pantallas pequeñas */
+    }
+
+    .modalContent h2 {
+        font-size: 1.5rem; /* Tamaño de texto más pequeño */
+    }
+
+    .modalContent p {
+        font-size: 1rem; /* Texto más pequeño */
+    }
+}

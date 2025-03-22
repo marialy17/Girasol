@@ -71,7 +71,10 @@ export default function Home() {
                 <h2>Un Girasol para mi Amor</h2>
                 {/* Aquí agregamos el componente Flor */}
                 <Flor />
-                <p style={{ marginTop: "20px" }}>Tal vez no te vi el día de hoy, pero te mando con mucho amor tu flor amarilla y que me mejor con un girasol.</p>
+                <p style={{ marginTop: "20px" }}>
+                  Tal vez no te vi el día de hoy, pero te mando con mucho amor
+                  tu flor amarilla y que me mejor con un girasol.
+                </p>
 
                 <button
                   className={`${styles.modalButton} ${styles.regresarButton}`}
@@ -83,8 +86,22 @@ export default function Home() {
             ) : (
               <>
                 <h2>¿Sabías que hoy es el día mundial de la poesía?</h2>
-                <p>Mi...</p>
-
+                <p>Mar de fuego</p>
+                <p>
+                  Te amo como el mar que besa la orilla, con intensidad y
+                  ternura en cada ola, como el viento que abraza las velas, sin
+                  miedo al naufragio, sin miedo a la sombra. Tus ojos, dos faros
+                  en noche profunda, guían mi cuerpo entre espuma y deseo, y en
+                  cada latido la marea se agita, como un susurro de amor en el
+                  tiempo. Eres tempestad y calma infinita, marea que arrastra mi
+                  alma desnuda, y en cada ola que rompe en mi pecho, arde el
+                  abismo, que enciende la luna. No hay horizonte que apague este
+                  fuego, ni puerto seguro que frene mi ancla, pues te amo en el
+                  agua, en la brisa y la arena, te amo en la sal que mi piel
+                  desata. Que el mar nos devore, que el tiempo se rinda, que el
+                  sol nos sorprenda temblando en la orilla, pues nuestro amor no
+                  es solo un reflejo, es un océano, eterno y sin prisa.
+                </p>
                 <button
                   className={`${styles.modalButton} ${styles.regresarButton}`}
                   onClick={handleRegresar}
