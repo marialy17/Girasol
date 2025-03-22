@@ -27,11 +27,6 @@ export default function Home() {
     setModalView("first"); // Vuelve a la primera vista
   };
 
-  // Función para ir a otra parte
-  const handleIr = () => {
-    router.push("/otra-pagina"); // Cambia '/otra-pagina' por la URL que desees
-  };
-
   // Cambiar a la segunda vista del modal
   const goToSecondView = () => {
     setModalView("second");
