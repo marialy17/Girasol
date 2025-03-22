@@ -115,6 +115,18 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.modalContent h3 {
+    font-family: 'Arial', sans-serif; /* Cambié la fuente a Arial */
+    font-size: 1.4rem; /* Aumenté un poco el tamaño */
+    color: #2d3436; /* Cambié el color a un tono más oscuro */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: normal; /* Establecí el peso de la fuente a normal */
+    letter-spacing: 1px; /* Cambié el espacio entre letras */
+    text-transform: none; /* Removí la transformación en mayúsculas */
+    text-shadow: none; /* Elimino la sombra de texto */
+}
+
 .modalContent p strong {
     color: #FFD700; /* Color dorado brillante */
 }

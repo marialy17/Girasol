@@ -85,7 +85,7 @@ export default function Home() {
               </>
             ) : (
               <>
-                <h2>¿Sabías que hoy es el día mundial de la poesía?</h2>
+                <h3>¿Sabías que hoy es el día mundial de la poesía?</h3>
                 <p>Mar de fuego</p>
                 <p>
                   Te amo como el mar que besa la orilla, con intensidad y
