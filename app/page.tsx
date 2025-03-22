@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"; // Importar desde 'next/navigation'
 import styles from "./page.module.css";
 import Flor from "./components/Flor"; // Importar el componente Flor
 
