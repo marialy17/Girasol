@@ -1,103 +1,108 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // Importar desde 'next/navigation'
+import styles from "./page.module.css";
+import Flor from "./components/Flor"; // Importar el componente Flor
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalView, setModalView] = useState("first"); // Controlador de las vistas dentro del modal
+  const [isClient, setIsClient] = useState(false); // Estado para verificar si es cliente
+  const router = useRouter(); // Instanciamos el router
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Verificamos si el componente está montado en el cliente
+  useEffect(() => {
+    setIsClient(true); // Cambiar a true una vez que el componente se monta en el cliente
+  }, []);
+
+  // Función para cerrar el modal
+  const closeModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if ((e.target as HTMLElement).id === "modalBackground") {
+      setIsModalOpen(false);
+    }
+  };
+
+  // Función para regresar a la vista inicial dentro del modal
+  const handleRegresar = () => {
+    setModalView("first"); // Vuelve a la primera vista
+  };
+
+  // Función para ir a otra parte
+  const handleIr = () => {
+    router.push("/otra-pagina"); // Cambia '/otra-pagina' por la URL que desees
+  };
+
+  // Cambiar a la segunda vista del modal
+  const goToSecondView = () => {
+    setModalView("second");
+  };
+
+  // Evitar renderizar en el servidor
+  if (!isClient) return null;
+
+  return (
+    <main className={styles.main}>
+      {/* Título llamativo */}
+      <h1 className={styles.title}>Bonjour Mon Coeur</h1>
+
+      {/* Descripción breve */}
+      <p className={styles.description}>
+        Presiona el corazón para descubrir algo especial...
+      </p>
+
+      {/* Botón de corazón */}
+      <button
+        className={styles.heartButton}
+        onClick={() => setIsModalOpen(true)}
+      >
+        💚
+      </button>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div
+          id="modalBackground"
+          className={styles.modal}
+          onClick={closeModal} // Detecta clics fuera del contenido
+        >
+          <div className={styles.modalContent}>
+            <button
+              className={styles.closeButton}
+              onClick={() => setIsModalOpen(false)}
+            >
+              ×
+            </button>
+
+            {modalView === "first" ? (
+              <>
+                <h2>Un Girasol para mi Amor</h2>
+                {/* Aquí agregamos el componente Flor */}
+                <Flor />
+                <p style={{ marginTop: "20px" }}>Tal vez no te vi el día de hoy, pero te mando con mucho amor tu flor amarilla y que me mejor con un girasol.</p>
+
+                <button
+                  className={`${styles.modalButton} ${styles.regresarButton}`}
+                  onClick={goToSecondView}
+                >
+                  Siguiente
+                </button>
+              </>
+            ) : (
+              <>
+                <h2>¿Sabías que hoy es el día mundial de la poesía?</h2>
+                <p>Mi...</p>
+
+                <button
+                  className={`${styles.modalButton} ${styles.regresarButton}`}
+                  onClick={handleRegresar}
+                >
+                  Regresar
+                </button>
+              </>
+            )}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      )}
+    </main>
   );
 }
