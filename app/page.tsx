@@ -8,7 +8,6 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalView, setModalView] = useState("first"); // Controlador de las vistas dentro del modal
   const [isClient, setIsClient] = useState(false); // Estado para verificar si es cliente
-  const router = useRouter(); // Instanciamos el router
 
   // Verificamos si el componente está montado en el cliente
   useEffect(() => {
